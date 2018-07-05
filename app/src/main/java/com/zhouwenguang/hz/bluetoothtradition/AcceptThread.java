@@ -5,8 +5,13 @@ import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.UUID;
 
+/**
+ * 蓝牙服务器端线程
+ *
+ */
 public class AcceptThread extends Thread {
        private final String uuid="7efa3103-6187-49f6-9ae1-97e722cfe6f2";
        private  BluetoothServerSocket serverSocket;
@@ -15,7 +20,7 @@ public class AcceptThread extends Thread {
            bluetoothAdapter=BluetoothAdapter.getDefaultAdapter();
            BluetoothServerSocket tmp = null;
            try {
-               bluetoothAdapter.listenUsingRfcommWithServiceRecord("test",UUID.fromString(uuid));
+               tmp=bluetoothAdapter.listenUsingRfcommWithServiceRecord("test",UUID.fromString(uuid));
            } catch (IOException e) {
                e.printStackTrace();
            }
@@ -47,9 +52,14 @@ public class AcceptThread extends Thread {
     }
 
     private void manageConnectedSocket(BluetoothSocket socket) {
-
-
-
+        OutputStream outStream;
+        try {
+            outStream=socket.getOutputStream();
+            outStream.write("你好".getBytes());
+            outStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
     }
