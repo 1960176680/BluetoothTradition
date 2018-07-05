@@ -2,6 +2,8 @@ package com.zhouwenguang.hz.bluetoothtradition;
 
 import org.junit.Test;
 
+import java.util.UUID;
+
 import static org.junit.Assert.*;
 
 /**
@@ -14,4 +16,10 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+    @Test
+    public void get(){
+        UUID uuid= java.util.UUID.randomUUID();
+        System.out.print(uuid.toString());
+    }
+
 }
