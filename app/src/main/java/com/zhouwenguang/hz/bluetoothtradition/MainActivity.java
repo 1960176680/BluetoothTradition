@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                     BluetoothDevice bluetoothDevice=intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                     arrayAdapter.add(bluetoothDevice.getName() + "\n" + bluetoothDevice.getAddress());
                     arrayAdapter.notifyDataSetChanged();
+
                 }
         }
     };
