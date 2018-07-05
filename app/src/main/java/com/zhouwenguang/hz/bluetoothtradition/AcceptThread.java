@@ -18,18 +18,16 @@ public class AcceptThread extends Thread {
        private BluetoothAdapter bluetoothAdapter;
        public AcceptThread(){
            bluetoothAdapter=BluetoothAdapter.getDefaultAdapter();
-           BluetoothServerSocket tmp = null;
            try {
-               tmp=bluetoothAdapter.listenUsingRfcommWithServiceRecord("test",UUID.fromString(uuid));
+               serverSocket=bluetoothAdapter.listenUsingRfcommWithServiceRecord("test",UUID.fromString(uuid));
            } catch (IOException e) {
                e.printStackTrace();
            }
-           serverSocket=tmp;
        }
 
     @Override
     public void run() {
-        BluetoothSocket socket = null;
+        BluetoothSocket socket;
         while(true){
             try {
                 socket=serverSocket.accept();

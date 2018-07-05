@@ -16,14 +16,12 @@ public class ConnectThread extends Thread {
     private BluetoothSocket bluetoothSocket;
     private BluetoothAdapter bluetoothAdapter;
     public ConnectThread(BluetoothDevice device){
-        BluetoothSocket tmp = null;
         bluetoothDevice=device;
         try {
-            tmp=bluetoothDevice.createRfcommSocketToServiceRecord(UUID.fromString(uuid));
+            bluetoothSocket=bluetoothDevice.createRfcommSocketToServiceRecord(UUID.fromString(uuid));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        bluetoothSocket=tmp;
     }
 
     @Override
